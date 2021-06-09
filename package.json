@@ -13,20 +13,29 @@
   },
   "ahaExtension": {
     "contributes": {
-      "views": {
-        "samplePage": {
-          "title": "Sample Page",
-          "entryPoint": "src/views/samplePage.js",
-          "host": "page",
-          "location": {
-            "home": "Work"
-          }
+      "settings": {
+        "expectedCaseAlgorithm": {
+          "title": "Estimation algorithm",
+          "description": "Choose the algorithm to use when calculating the expected case",
+          "type": "string",
+          "scope": ["account"],
+          "default": "triangular",
+          "options": [
+            { "label": "Triangular distribution", "value": "triangular" },
+            { "label": "PERT", "value": "pert" }
+          ]
         }
       },
-      "commands": {
-        "sampleCommand": {
-          "title": "Sample Command",
-          "entryPoint": "src/commands/sampleCommand.js"
+      "views": {
+        "threePointEstimate": {
+          "title": "Three point estimate",
+          "entryPoint": "src/views/threePointEstimate.js",
+          "host": "attribute",
+          "recordTypes": [
+            "Epic",
+            "Feature",
+            "Requirement"
+          ]
         }
       }
     }
