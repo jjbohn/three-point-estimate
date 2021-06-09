@@ -102,6 +102,9 @@ const ThreePointEstimate = (props) => {
   const storeEstimate = async (estimate) => {
     setEstimate(estimate);
     await record.setExtensionField(EXTENSION_ID, FIELD, estimate);
+
+    record.originalEstimate = expectedCase(estimate);
+    const success = await record.save();
   };
 
   const triangular = (estimate) => {
