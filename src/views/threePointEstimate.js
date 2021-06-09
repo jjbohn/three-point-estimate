@@ -100,7 +100,6 @@ const ThreePointEstimate = (props) => {
   useEffect(() => setEstimate(props.estimate), [props.estimate, algorithm]);
 
   const storeEstimate = async (estimate) => {
-    estimate ||= 0;
     setEstimate(estimate);
     await record.setExtensionField(EXTENSION_ID, FIELD, estimate);
   };
