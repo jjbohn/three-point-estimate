@@ -116,8 +116,6 @@ const ThreePointEstimate = (props) => {
   const expectedCase = (estimate) => {
     let value = 0;
 
-    console.log(algorithm);
-
     switch(algorithm) {
     case 'pert':
       value = pert(estimate);
