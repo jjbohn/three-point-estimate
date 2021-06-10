@@ -125,6 +125,10 @@ const ThreePointEstimate = (props) => {
     return (estimate.best + estimate.worst + (4 * estimate.likely)) / 6;
   };
 
+  const pessimistic = (estimate) => {
+    return (estimate.best + (2 * estimate.worst) + (3 * estimate.likely)) / 6;
+  };
+
   const expectedCase = (estimate) => {
     let value = 0;
 
@@ -134,6 +138,8 @@ const ThreePointEstimate = (props) => {
     case 'pert':
       value = pert(estimate);
       break;
+    case 'pessimistic':
+      value = pessimistic(estimate);
     case 'triangular':
     default:
       value = triangular(estimate);

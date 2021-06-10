@@ -22,7 +22,8 @@
           "default": "triangular",
           "options": [
             { "label": "Triangular distribution", "value": "triangular" },
-            { "label": "PERT", "value": "pert" }
+            { "label": "PERT", "value": "pert" },
+            { "label": "Pessimistic", "value": "pessimistic" }
           ]
         },
         "saveToOriginalEstimate": {
