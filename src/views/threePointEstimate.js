@@ -101,7 +101,7 @@ const EstimateForm = ({ estimate, setEstimate }) => {
 };
 
 const ThreePointEstimate = (props) => {
-  const { algorithm, record } = props;
+  const { algorithm, record, saveToOriginalEstimate } = props;
   const [estimate, setEstimate] = useState(props.estimate);
 
   useEffect(() => setEstimate(props.estimate), [props.estimate, algorithm]);
@@ -111,8 +111,10 @@ const ThreePointEstimate = (props) => {
     setEstimate(estimate);
     await record.setExtensionField(EXTENSION_ID, FIELD, estimate);
 
-    record.originalEstimate = expectedCase(estimate);
-    const success = await record.save();
+    if (saveToOriginalEstimate) {
+      record.originalEstimate = expectedCase(estimate);
+      const success = await record.save();
+    }
   };
 
   const triangular = (estimate) => {
@@ -163,8 +165,9 @@ const ThreePointEstimate = (props) => {
 aha.on("threePointEstimate", ({ record, fields, container }, { settings }) => {
   const estimate = fields[FIELD];
   const algorithm = settings.expectedCaseAlgorithm;
+  const saveToOriginalEstimate = settings.saveToOriginalEstimate;
 
   return (
-    <ThreePointEstimate record={record} estimate={estimate} algorithm={algorithm} />
+    <ThreePointEstimate record={record} estimate={estimate} saveToOriginalEstimate={saveToOriginalEstimate} algorithm={algorithm} />
   );
 });

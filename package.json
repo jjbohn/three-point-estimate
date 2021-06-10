@@ -24,6 +24,13 @@
             { "label": "Triangular distribution", "value": "triangular" },
             { "label": "PERT", "value": "pert" }
           ]
+        },
+        "saveToOriginalEstimate": {
+          "title": "Save to original estimate",
+          "description": "Save the calculated expected case to the records' original estimates",
+          "type": "boolean",
+          "scope": ["account"],
+          "default": true
         }
       },
       "views": {
