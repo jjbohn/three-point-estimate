@@ -55,7 +55,14 @@ const Styles = () => {
   );
 };
 
+const DEFAULT_ESTIMATE = {
+  best: 0,
+  worst: 0,
+  likely: 0,
+};
+
 const EstimateForm = ({ estimate, setEstimate }) => {
+  estimate ||= DEFAULT_ESTIMATE;
 
   const handleUpdate = (key) => {
     return (event) => {
@@ -100,6 +107,7 @@ const ThreePointEstimate = (props) => {
   useEffect(() => setEstimate(props.estimate), [props.estimate, algorithm]);
 
   const storeEstimate = async (estimate) => {
+    estimate ||= DEFAULT_ESTIMATE;
     setEstimate(estimate);
     await record.setExtensionField(EXTENSION_ID, FIELD, estimate);
 
@@ -117,6 +125,8 @@ const ThreePointEstimate = (props) => {
 
   const expectedCase = (estimate) => {
     let value = 0;
+
+    if (!estimate) { return value; }
 
     switch(algorithm) {
     case 'pert':
